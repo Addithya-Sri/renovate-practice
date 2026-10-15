@@ -1,5 +1,5 @@
 
-FROM library/alpine:3.21
+FROM library/alpine:3.24
 
 # Renovate managed Alpine APK dependencies
 
