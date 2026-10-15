@@ -1,34 +1,32 @@
-
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-
-  "customManagers": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  customManagers: [
     {
-      "customType": "regex",
-      "description": "Update Alpine packages",
-      "managerFilePatterns": ["/^Dockerfile$/"],
-      "matchStrings": [
-        "#\\s*renovate:\\s*datasource=apk\\s+depName=(?<depName>\\S+)\\s+registryUrl=(?<registryUrl>\\S+)\\s+ENV\\s+[A-Z0-9_]+_VERSION=\"(?<currentValue>[^\"]+)\""
+      customType: "regex",
+      description: "Update Alpine distribution",
+      managerFilePatterns: ["/^Dockerfile$/"],
+      matchStrings: [
+        "registryUrl=https://dl-cdn\\.alpinelinux\\.org/alpine\\?branch=v(?<currentValue>\\d+\\.\\d+)",
       ],
-      "datasourceTemplate": "apk",
-      "versioningTemplate": "apk"
-    }
+      datasourceTemplate: "docker",
+      depNameTemplate: "library/alpine",
+      versioningTemplate: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)$",
+      autoReplaceStringTemplate: "registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v{{{newMajor}}}.{{{newMinor}}}",
+    },
+    {
+      customType: "regex",
+      description: "Update Alpine packages",
+      managerFilePatterns: ["/^Dockerfile$/"],
+      matchStrings: [
+        '#\\s*renovate:\\s*datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*?))?\\sENV .*?_VERSION="(?<currentValue>.*)"\\s',
+      ],
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}apk{{/if}}",
+    },
   ],
-
-  "packageRules": [
+  packageRules: [
     {
-      "matchDatasources": ["docker", "apk"],
-      "matchPackageNames": [
-        "library/alpine",
-        "catatonit",
-        "bash",
-        "shadow",
-        "openssh-sftp-server",
-        "inotify-tools"
-      ],
-      "groupName": "Alpine base image and packages",
-      "separateMajorMinor": false,
-      "recreateWhen": "always"
-    }
-  ]
+      matchDatasources: ["docker"],
+      registryUrls: ["https://cr.mam.dev"],
+    },
+  ],
 }
