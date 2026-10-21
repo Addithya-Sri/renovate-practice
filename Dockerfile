@@ -13,7 +13,7 @@ ENV BASH_VERSION="5.2.37-r0"
 ENV SHADOW_VERSION="4.16.0-r1"
 
 # renovate: datasource=apk depName=openssh-sftp-server registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=x86_64
-ENV OPENSSH_VERSION="9.9_p2-r0"
+ENV OPENSSH_VERSION="10.3_p1-r1"
 
 # renovate: datasource=apk depName=inotify-tools registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=x86_64
 ENV INOTIFY_VERSION="4.23.9.0-r0"
