@@ -7,7 +7,7 @@ FROM library/alpine:3.24
 ENV CATATONIT_VERSION="0.2.0-r0"
 
 # renovate: datasource=apk depName=bash registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v3.21&components=main,community&arch=x86_64
-ENV BASH_VERSION="5.1.0-r0"
+ENV BASH_VERSION="5.2.37-r0"
 
 # renovate: datasource=apk depName=shadow registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v3.21&components=main,community&arch=x86_64
 ENV SHADOW_VERSION="4.16.0-r1"
