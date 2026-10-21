@@ -4,7 +4,7 @@ FROM library/alpine:3.24
 # Renovate managed Alpine APK dependencies
 
 # renovate: datasource=apk depName=catatonit registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=x86_64
-ENV CATATONIT_VERSION="0.2.0-r0"
+ENV CATATONIT_VERSION="0.2.1-r0"
 
 # renovate: datasource=apk depName=bash registryUrl=https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=x86_64
 ENV BASH_VERSION="5.2.37-r0"
